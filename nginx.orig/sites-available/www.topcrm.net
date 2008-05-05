@@ -1,0 +1,13 @@
+server {
+	listen   80;
+	index index.html;
+
+	server_name www.topcrm.net *.topcrm.net *.*.topcrm.net;
+
+	location / {
+		root /var/www/www.topcrm.net;
+	}
+
+
+	error_page 404 /index.html;
+}

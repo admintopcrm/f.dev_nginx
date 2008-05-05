@@ -1,0 +1,38 @@
+# TOPRCM.NET
+server {
+	listen *:80;
+	server_name topcrm.net www.topcrm.net 172.16.3.3 89.222.248.27;
+	access_log /var/log/nginx/topcrm.net-access.log;
+	error_log  /var/log/nginx/topcrm.net-errors.log;
+
+	index index.html;
+
+	# some headers
+	include conf/headers.conf;
+
+	# error documents
+	include conf/errors.conf;
+
+	# no goverment
+	include conf/goverment.conf;
+
+	# easter eggs
+	include conf/easter.conf;
+
+	# simple security
+	include conf/security.conf;
+
+	location / {
+		root /var/www/www.topcrm.net/;
+		#strip on;
+	}
+
+	location /status {
+		stub_status on;
+		access_log off;
+		allow 172.16.0.0/16;
+		deny all;
+	}
+}
+
+# vim: ft=nginx

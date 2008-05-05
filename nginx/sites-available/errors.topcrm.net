@@ -1,0 +1,29 @@
+# TOPRCM.NET
+server {
+	listen *:80;
+	server_name errors.topcrm.net;
+	access_log /var/log/nginx/errors.topcrm.net-access.log;
+	error_log  /var/log/nginx/errors.topcrm.net-errors.log;
+
+	index index.html;
+	
+	# some headers
+	include conf/headers.conf;
+
+	# no goverment
+	include conf/goverment.conf;
+
+	# easter eggs
+	include conf/easter.conf;
+
+	# simple security
+	include conf/security.conf;
+
+	location / {
+		root /var/www/errors.topcrm.net/;
+		default_type text/html;
+		#strip on;
+	}
+}
+
+# vim: ft=nginx
